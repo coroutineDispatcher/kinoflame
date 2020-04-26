@@ -2,14 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moviezz/home/navigation_bloc.dart';
 import 'package:moviezz/home/navigation_event.dart';
+import 'package:moviezz/movies/movies.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return HomeState();
+  }
+}
+
+class HomeState extends State<Home> {
   final navigationBloc = NavigationBloc();
 
   final List<Widget> _children = [
-    Center(
-      child: Text("Movies Comming Soon"),
-    ),
+    Movies(),
     Center(
       child: Text("Tv shows Comming Soon"),
     ),
@@ -53,5 +59,11 @@ class Home extends StatelessWidget {
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    navigationBloc.dispose();
+    super.dispose();
   }
 }
