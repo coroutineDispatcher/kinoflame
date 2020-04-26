@@ -3,13 +3,14 @@ import 'package:moviezz/model/now_playing_response.dart';
 
 const ApiBaseUrl = "https://api.themoviedb.org/3";
 const ApiKeyKey = "?api_key=";
-const ApiImageBaseUrl = "https://image.tmdb.org/t/p/w400/";
+const ApiImageBaseUrl = "https://image.tmdb.org/t/p/w400";
 const NowPlayingEndpoint = "/movie/now_playing";
+const UpcommingEndpoint = "/movie/upcoming";
 
 // Movie request types
 const MovieRequestTypeNowPlaying = 0;
 
-var moviesInitialData = NowPlayingResponse(
+var moviesInitialData = MovieResponse(
   results: [
     Movie(),
     Movie(),

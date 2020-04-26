@@ -1,12 +1,12 @@
 import 'movie.dart';
 
-class NowPlayingResponse {
+class MovieResponse {
   List<Movie> results;
 
-  NowPlayingResponse({this.results});
+  MovieResponse({this.results});
 
-  factory NowPlayingResponse.fromJson(Map<String, dynamic> json) {
-    return NowPlayingResponse(
+  factory MovieResponse.fromJson(Map<String, dynamic> json) {
+    return MovieResponse(
         results: json["results"] != null
             ? List<Movie>.from(json["results"].map((x) => Movie.fromJson(x)))
             : List<Movie>());
