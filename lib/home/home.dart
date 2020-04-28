@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:moviezz/home/navigation_bloc.dart';
 import 'package:moviezz/home/navigation_event.dart';
 import 'package:moviezz/movies/movies.dart';
+import 'package:moviezz/tv_shows/tv_shows.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -16,9 +17,7 @@ class HomeState extends State<Home> {
 
   final List<Widget> _children = [
     Movies(),
-    Center(
-      child: Text("Tv shows Comming Soon"),
-    ),
+    TvShows(),
     Center(
       child: Text("Search comming soon"),
     ),
@@ -52,8 +51,6 @@ class HomeState extends State<Home> {
                   icon: new Icon(Icons.search), title: new Text("Search")),
               BottomNavigationBarItem(
                   icon: new Icon(Icons.person), title: new Text("People")),
-//              BottomNavigationBarItem(
-//                  icon: new Icon(Icons.favorite), title: new Text("Favorites"))
             ],
           ),
         );

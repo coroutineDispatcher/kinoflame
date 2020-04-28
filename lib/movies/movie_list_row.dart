@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:moviezz/base/constants.dart';
 import 'package:moviezz/model/movie.dart';
 
@@ -18,20 +20,18 @@ class MovieListRow extends StatelessWidget {
         itemCount: movies.length,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16.0),
-              child: Hero(
-                tag: movies[index].posterPath,
-                child: FadeInImage(
-                    image: NetworkImage(
-                        ApiImageBaseUrl + movies[index].posterPath),
-                    placeholder:
-                        AssetImage("lib/assets/images/movie_placeholder.png"),
-                    fit: BoxFit.cover),
-              ),
-            ),
-          );
+              padding: const EdgeInsets.all(8.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16.0),
+                child: Hero(
+                    tag: movies[index].posterPath,
+                    child: CachedNetworkImage(
+                        imageUrl: ApiImageBaseUrl + movies[index].posterPath,
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(),
+                        errorWidget: (context, url, error) =>
+                            Icon(Icons.error))),
+              ));
         },
       ),
     );

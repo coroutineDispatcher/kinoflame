@@ -1,27 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moviezz/base/constants.dart';
-import 'package:moviezz/model/movie_response.dart';
-import 'package:moviezz/movies/movie_list_row.dart';
-import 'package:moviezz/movies/movies_bloc.dart';
-import 'package:moviezz/movies/movies_events.dart';
+import 'package:moviezz/model/tv_response.dart';
+import 'package:moviezz/tv_shows/tv_show_events.dart';
+import 'package:moviezz/tv_shows/tv_show_list_row.dart';
+import 'package:moviezz/tv_shows/tv_shows_bloc.dart';
 
-class Movies extends StatefulWidget {
+class TvShows extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MoviesState();
+    return TvShowsSate();
   }
 }
 
-class MoviesState extends State<Movies> {
-  MoviesBloc moviesBloc = MoviesBloc();
+class TvShowsSate extends State<TvShows> {
+  final tvShowsBloc = TvShowsBloc();
 
   @override
   void initState() {
-    moviesBloc.currentEvent.add(FetchNowPlayingMoviesEvent());
-    moviesBloc.currentEvent.add(FetchUpcomingMoviesEvent());
-    moviesBloc.currentEvent.add(FetchPopularMoviesEvent());
-    moviesBloc.currentEvent.add(FetchTopRatedMoviesEvent());
+    tvShowsBloc.currentEvent.add(FetchArrivingTodayEvent());
+    tvShowsBloc.currentEvent.add(FetchOnTheAirEvent());
+    tvShowsBloc.currentEvent.add(FetchPopularEvent());
+    tvShowsBloc.currentEvent.add(FetchTopRatedEvent());
     super.initState();
   }
 
@@ -38,7 +38,7 @@ class MoviesState extends State<Movies> {
                 alignment: Alignment.centerLeft,
                 child: Container(
                   child: Text(
-                    "Now Playing",
+                    "Arriving today",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.deepPurple,
@@ -48,11 +48,11 @@ class MoviesState extends State<Movies> {
               ),
             ),
             StreamBuilder(
-              stream: moviesBloc.nowPlayingMoviesResponse,
-              initialData: moviesInitialData,
+              stream: tvShowsBloc.arrivingTodayResponse,
+              initialData: tvShowsInitialData,
               builder: (BuildContext buildContext,
-                  AsyncSnapshot<MovieResponse> snapshot) {
-                return MovieListRow(snapshot.data.results);
+                  AsyncSnapshot<TvResponse> snapshot) {
+                return TvShowListRow(snapshot.data.results);
               },
             ),
             Padding(
@@ -61,7 +61,7 @@ class MoviesState extends State<Movies> {
                 alignment: Alignment.centerLeft,
                 child: Container(
                   child: Text(
-                    "Upcoming",
+                    "On the air",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.deepPurple,
@@ -71,11 +71,11 @@ class MoviesState extends State<Movies> {
               ),
             ),
             StreamBuilder(
-              stream: moviesBloc.upcomingMoviesResponse,
-              initialData: moviesInitialData,
+              stream: tvShowsBloc.onTheAirResponse,
+              initialData: tvShowsInitialData,
               builder: (BuildContext buildContext,
-                  AsyncSnapshot<MovieResponse> snapshot) {
-                return MovieListRow(snapshot.data.results);
+                  AsyncSnapshot<TvResponse> snapshot) {
+                return TvShowListRow(snapshot.data.results);
               },
             ),
             Padding(
@@ -94,11 +94,11 @@ class MoviesState extends State<Movies> {
               ),
             ),
             StreamBuilder(
-              stream: moviesBloc.popularMoviesResponse,
-              initialData: moviesInitialData,
+              stream: tvShowsBloc.popularResponse,
+              initialData: tvShowsInitialData,
               builder: (BuildContext buildContext,
-                  AsyncSnapshot<MovieResponse> snapshot) {
-                return MovieListRow(snapshot.data.results);
+                  AsyncSnapshot<TvResponse> snapshot) {
+                return TvShowListRow(snapshot.data.results);
               },
             ),
             Padding(
@@ -117,11 +117,11 @@ class MoviesState extends State<Movies> {
               ),
             ),
             StreamBuilder(
-              stream: moviesBloc.topRatedMovieResponse,
-              initialData: moviesInitialData,
+              stream: tvShowsBloc.topRatedResponse,
+              initialData: tvShowsInitialData,
               builder: (BuildContext buildContext,
-                  AsyncSnapshot<MovieResponse> snapshot) {
-                return MovieListRow(snapshot.data.results);
+                  AsyncSnapshot<TvResponse> snapshot) {
+                return TvShowListRow(snapshot.data.results);
               },
             )
           ],
@@ -132,7 +132,7 @@ class MoviesState extends State<Movies> {
 
   @override
   void dispose() {
-    moviesBloc.dispose();
+    tvShowsBloc.dispose();
     super.dispose();
   }
 }

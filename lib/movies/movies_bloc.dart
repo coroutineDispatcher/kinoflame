@@ -4,20 +4,28 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:moviezz/base/constants.dart';
 import 'package:moviezz/base/secret.dart';
-import 'package:moviezz/model/now_playing_response.dart';
+import 'package:moviezz/model/movie_response.dart';
 import 'package:moviezz/movies/movies_events.dart';
 
 class MoviesBloc {
-  final _nowPlayingResponseController = StreamController<MovieResponse>();
-  final _upcommingResponseController = StreamController<MovieResponse>();
+  final _nowPlayingMoviesResponseController = StreamController<MovieResponse>();
+  final _upcommingMoviesResponseController = StreamController<MovieResponse>();
+  final _popularMoviesResponseController = StreamController<MovieResponse>();
+  final _topRatedMoviesResponseController = StreamController<MovieResponse>();
 
   final _moviesEventController = StreamController<MoviesEvent>();
 
-  Stream<MovieResponse> get nowPlayingResponse =>
-      _nowPlayingResponseController.stream;
+  Stream<MovieResponse> get nowPlayingMoviesResponse =>
+      _nowPlayingMoviesResponseController.stream;
 
-  Stream<MovieResponse> get upcomingResponse =>
-      _upcommingResponseController.stream;
+  Stream<MovieResponse> get topRatedMovieResponse =>
+      _topRatedMoviesResponseController.stream;
+
+  Stream<MovieResponse> get upcomingMoviesResponse =>
+      _upcommingMoviesResponseController.stream;
+
+  Stream<MovieResponse> get popularMoviesResponse =>
+      _popularMoviesResponseController.stream;
 
   StreamSink<MoviesEvent> get currentEvent => _moviesEventController.sink;
 
@@ -27,9 +35,13 @@ class MoviesBloc {
 
   void _handleIncommingEvents(MoviesEvent moviesEvent) {
     if (moviesEvent is FetchNowPlayingMoviesEvent) {
-      _fetchMovies(NowPlayingEndpoint, _nowPlayingResponseController);
+      _fetchMovies(NowPlayingEndpoint, _nowPlayingMoviesResponseController);
     } else if (moviesEvent is FetchUpcomingMoviesEvent) {
-      _fetchMovies(UpcommingEndpoint, _upcommingResponseController);
+      _fetchMovies(UpcommingEndpoint, _upcommingMoviesResponseController);
+    } else if (moviesEvent is FetchPopularMoviesEvent) {
+      _fetchMovies(PopularEndpoint, _popularMoviesResponseController);
+    } else if (moviesEvent is FetchTopRatedMoviesEvent) {
+      _fetchMovies(TopRatedEndpoint, _topRatedMoviesResponseController);
     }
   }
 
@@ -44,8 +56,10 @@ class MoviesBloc {
   }
 
   void dispose() {
-    _nowPlayingResponseController.close();
-    _upcommingResponseController.close();
+    _nowPlayingMoviesResponseController.close();
+    _upcommingMoviesResponseController.close();
+    _popularMoviesResponseController.close();
+    _topRatedMoviesResponseController.close();
     _moviesEventController.close();
   }
 }
