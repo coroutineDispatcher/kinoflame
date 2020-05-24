@@ -1,5 +1,7 @@
 import 'package:moviezz/model/movie.dart';
 import 'package:moviezz/model/movie_response.dart';
+import 'package:moviezz/model/people.dart';
+import 'package:moviezz/model/people_response.dart';
 import 'package:moviezz/model/tv_response.dart';
 import 'package:moviezz/model/tv_show.dart';
 
@@ -23,3 +25,7 @@ var moviesInitialData = MovieResponse(
 
 var tvShowsInitialData = TvResponse(
     results: [TvShow(), TvShow(), TvShow(), TvShow(), TvShow(), TvShow()]);
+
+var actorsInitialData = PeopleResponse(
+    results: [People(), People(), People(), People(), People(), People()]
+);

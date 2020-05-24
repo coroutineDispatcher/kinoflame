@@ -4,9 +4,8 @@ import 'dart:convert';
 import 'package:moviezz/base/constants.dart';
 import 'package:moviezz/base/secret.dart';
 import 'package:moviezz/model/tv_response.dart';
-import 'package:moviezz/model/tv_show.dart';
-import 'package:moviezz/tv_shows/tv_show_events.dart';
 import 'package:http/http.dart';
+import 'package:moviezz/ui/tv_shows/tv_show_events.dart';
 
 class TvShowsBloc {
   final _arrivingTodayResponseController = StreamController<TvResponse>();

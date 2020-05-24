@@ -5,7 +5,8 @@ import 'package:http/http.dart';
 import 'package:moviezz/base/constants.dart';
 import 'package:moviezz/base/secret.dart';
 import 'package:moviezz/model/movie_response.dart';
-import 'package:moviezz/movies/movies_events.dart';
+
+import 'movies_events.dart';
 
 class MoviesBloc {
   final _nowPlayingMoviesResponseController = StreamController<MovieResponse>();

@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moviezz/base/constants.dart';
 import 'package:moviezz/model/tv_response.dart';
-import 'package:moviezz/tv_shows/tv_show_events.dart';
-import 'package:moviezz/tv_shows/tv_show_list_row.dart';
-import 'package:moviezz/tv_shows/tv_shows_bloc.dart';
+import 'package:moviezz/ui/tv_shows/tv_show_events.dart';
+import 'package:moviezz/ui/tv_shows/tv_show_list_row.dart';
+import 'package:moviezz/ui/tv_shows/tv_shows_bloc.dart';
 
 class TvShows extends StatefulWidget {
   @override

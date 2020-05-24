@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moviezz/base/constants.dart';
 import 'package:moviezz/model/movie_response.dart';
-import 'package:moviezz/movies/movie_list_row.dart';
-import 'package:moviezz/movies/movies_bloc.dart';
-import 'package:moviezz/movies/movies_events.dart';
+
+import 'movie_list_row.dart';
+import 'movies_bloc.dart';
+import 'movies_events.dart';
 
 class Movies extends StatefulWidget {
   @override

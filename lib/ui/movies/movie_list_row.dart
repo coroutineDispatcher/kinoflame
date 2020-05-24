@@ -27,8 +27,12 @@ class MovieListRow extends StatelessWidget {
                     tag: movies[index].posterPath,
                     child: CachedNetworkImage(
                         imageUrl: ApiImageBaseUrl + movies[index].posterPath,
-                        placeholder: (context, url) =>
-                            CircularProgressIndicator(),
+                        placeholder: (context, url) => Center(
+                              child: SizedBox(
+                                  height: 50,
+                                  width: 50,
+                                  child: CircularProgressIndicator()),
+                            ),
                         errorWidget: (context, url, error) =>
                             Icon(Icons.error))),
               ));

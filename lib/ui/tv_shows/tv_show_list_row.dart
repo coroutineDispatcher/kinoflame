@@ -27,7 +27,12 @@ class TvShowListRow extends StatelessWidget {
                 tag: tvShows[index].posterPath,
                 child: CachedNetworkImage(
                     imageUrl: ApiImageBaseUrl + tvShows[index].posterPath,
-                    placeholder: (context, url) => CircularProgressIndicator(),
+                    placeholder: (context, url) => Center(
+                      child: SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: CircularProgressIndicator()),
+                    ),
                     errorWidget: (context, url, error) => Icon(Icons.error)
                 ),
               ),

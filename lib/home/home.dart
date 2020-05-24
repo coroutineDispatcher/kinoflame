@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moviezz/home/navigation_bloc.dart';
 import 'package:moviezz/home/navigation_event.dart';
-import 'package:moviezz/movies/movies.dart';
-import 'package:moviezz/tv_shows/tv_shows.dart';
+import 'package:moviezz/ui/movies/movies.dart';
+import 'package:moviezz/ui/people/actors.dart';
+import 'package:moviezz/ui/tv_shows/tv_shows.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -22,7 +23,7 @@ class HomeState extends State<Home> {
       child: Text("Search comming soon"),
     ),
     Center(
-      child: Text("Favorites Comming Soon"),
+      child: Actors(),
     )
   ];
 
